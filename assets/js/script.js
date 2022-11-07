@@ -11,6 +11,7 @@ $(document).ready(function () {
     let value = $(this).siblings('.description').val();
     let time = $(this).parent().attr('id');
     localStorage.setItem(time, value);
+    $('.notification').removeClass('hide');
     $('.notification').addClass('show');
     setTimeout(function () {
       $('.notification').removeClass('show');

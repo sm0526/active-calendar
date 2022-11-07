@@ -7,7 +7,15 @@
 
 $(document).ready(function () {
   //save button and local storage
-
+  $('.saveBtn').on('click', function () {
+    let value = $(this).siblings('.description').val();
+    let time = $(this).parent().attr('id');
+    localStorage.setItem(time, value);
+    $('.notification').addClass('show');
+    setTimeout(function () {
+      $('.notification').removeClass('show');
+    }, 5000);
+  })
   //get current hours loop time blocks and check if have moved past current time block
   function hourUpdate() {
     let curretHour = moment().hours();

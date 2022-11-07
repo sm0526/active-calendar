@@ -9,7 +9,25 @@ $(document).ready(function () {
   //save button and local storage
 
   //get current hours loop time blocks and check if have moved past current time block
+  function hourUpdate() {
+    let curretHour = moment().hours();
+    $('.time-block').each(function () {
+      let hourBlock = parseInt($(this).attr('id').split('-')[1]);
 
+    if (hourBlock < curretHour) {
+      $(this).addClass('previous');
+    } else if (hourBlock === curretHour) {
+      $(this).removeClass('previous');
+      $(this).addClass('current');
+    } else {
+      $(this).removeClass('previous');
+      $(this).removeClass('current');
+      $(this).addClass('toBe');
+    }
+    });
+  }
+  hourUpdate();
+  const clock = setClock(hourUpdate, 15000);
   //display current day
   $('#currentday').text(moment().format('dddd, MMMM Do'));
   //load saved data from local storage
